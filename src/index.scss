@@ -1,0 +1,17 @@
+@use "./assets/styles/index" as *;
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-weight: 400;
+}
+
+body {
+  scroll-behavior: smooth;
+  max-width: 1920px;
+  margin: auto;
+  background: var(--grey01);
+}

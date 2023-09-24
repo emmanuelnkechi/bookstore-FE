@@ -1,0 +1,26 @@
+.table_section {
+  width: 70%;
+  margin: 6rem auto;
+
+  .my-table {
+    overflow-x: unset !important;
+
+    tbody {
+      td {
+        padding: 20px 10px;
+      }
+    }
+
+    .MuiTableRow-head {
+      th {
+        padding: 20px 10px;
+      }
+    }
+  }
+}
+
+.text-field {
+  display: flex !important;
+  justify-content: flex-end;
+  border-radius: 8px !important;
+}

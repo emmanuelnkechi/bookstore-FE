@@ -1,34 +1,130 @@
+import { createTheme } from "@mui/material";
+import { ThemeProvider } from "@mui/material";
+import ToastWidget from "./components/ToastWidget";
+import {
+  BrowserRouter,
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Home } from "./pages/Home";
+import './App.scss'
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#009444",
+      light: "#F5FAFF",
+      dark: "#00233F",
+    },
+    secondary: {
+      main: "#FF9700",
+      contrastText: "#fff",
+      light: "#FF97000D",
+    },
+  },
+  typography: {
+    fontFamily: "AvenirNext, Arial",
+  },
+  components: {
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          "&:disabled": {
+            opacity: 0.5,
+          },
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 8,
+          textTransform: "capitalize",
+          fontWeight: 500,
+          boxShadow: "none",
+          fontSize: "14px !important",
+          height: "46px",
+          "&:hover": {
+            boxShadow: "none",
+            bgcolor: "transparent",
+          },
+          "&:disabled": {
+            cursor: "not-allowed",
+          },
+          "&.MuiButton-sizeMedium": {
+            fontSize: "0.9rem",
+          },
+          "&.MuiButton-sizeLarge": {
+            minHeight: 42,
+          },
+          "&.MuiButton-sizeSmall": {
+            padding: "6px 16px",
+          },
+        },
+      },
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          color: "#00233F",
+          height: 28,
+          borderRadius: "8px",
+
+          "&.MuiChip-colorSuccess": {
+            backgroundColor: "#EBF6F0",
+            color: "#009444",
+          },
+          "&.MuiChip-colorError": {
+            backgroundColor: "#FBE6EA",
+            color: "#D90429",
+          },
+          "&.MuiChip-colorWarning": {
+            backgroundColor: "#FFF8E7",
+            color: "#FFB60A",
+          },
+          "&.MuiChip-colorDefault": {
+            backgroundColor: "#EFF2F6",
+            color: "#5C636D",
+          },
+          "&.MuiChip-colorInfo": {
+            backgroundColor: "#EDF5FE",
+            color: "#0059DE",
+          },
+
+          span: {
+            fontWeight: 400,
+            fontSize: "12px",
+          },
+        },
+      },
+    },
+  },
+});
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [themecolor] = useState("neutral");
+
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <ThemeProvider theme={theme}>
+      <ToastWidget />
+        <div className={`theme-${themecolor} w-full`}>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Home />} />
+            </Routes>
+          </BrowserRouter>
+
+        </div>
+      </ThemeProvider>
     </>
+
   )
 }
 
